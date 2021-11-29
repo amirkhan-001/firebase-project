@@ -1,0 +1,9 @@
+.item{
+    display: inline;
+}
+.collapse{
+    flex-basis: auto;
+}
+.navbar-header{
+    padding: 10px;
+}
