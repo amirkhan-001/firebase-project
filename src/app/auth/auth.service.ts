@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { BehaviorSubject, throwError } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { User } from "./user.module";
+import { environment } from "../../environments/environment";
 
 export interface AuthResponseData {
     kind: string
@@ -25,7 +26,7 @@ export class AuthService {
 
     signup(email: string, password: string) {
         // this.http.post('POST https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=API_KEY')
-        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAnNH6h2oCpmC1Bep5EJ4XwTrvVXLBZLcA',
+        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+environment.firebaseApiKey,
             {
                 email: email,
                 password: password,
@@ -36,7 +37,7 @@ export class AuthService {
             }));
     }
     signin(email:string,password:string){
-        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAnNH6h2oCpmC1Bep5EJ4XwTrvVXLBZLcA',
+        return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+environment.firebaseApiKey,
         {
             email: email,
             password: password,
